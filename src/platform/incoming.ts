@@ -5,14 +5,18 @@ import { useCallback, useEffect, useState } from 'react';
 /** O que chegou de fora do app: um arquivo (Compartilhar / Abrir com) ou um texto. */
 export type IncomingItem =
   | { kind: 'file'; uri: string; name?: string | null; mimeType?: string | null }
-  | { kind: 'text'; text: string };
+  | { kind: 'text'; text: string }
+  | { kind: 'bubble'; id: string };
 
 const isFileUri = (url: string | null): url is string => !!url && /^(content|file):\/\//i.test(url);
+const isBubbleUri = (url: string | null): url is string => !!url && url.startsWith('carimbo://bubble');
+const accepts = (url: string | null): url is string => isFileUri(url) || isBubbleUri(url);
 
 /**
  * Junta as portas de entrada do Android num único lugar:
  * - Compartilhar (ACTION_SEND), via expo-sharing
  * - Abrir com (ACTION_VIEW), via Linking
+ * - Toque na bolha flutuante (carimbo://bubble), via Linking
  * Para adicionar outra entrada no futuro, basta alimentar o mesmo estado aqui.
  */
 export function useIncomingItem() {
@@ -23,9 +27,9 @@ export function useIncomingItem() {
 
   useEffect(() => {
     Linking.getInitialURL()
-      .then((url) => isFileUri(url) && setViewUrl(url))
+      .then((url) => accepts(url) && setViewUrl(url))
       .finally(() => setInitialChecked(true));
-    const sub = Linking.addEventListener('url', ({ url }) => isFileUri(url) && setViewUrl(url));
+    const sub = Linking.addEventListener('url', ({ url }) => accepts(url) && setViewUrl(url));
     return () => sub.remove();
   }, []);
 
@@ -45,10 +49,10 @@ export function useIncomingItem() {
       };
     }
   } else if (viewUrl) {
-    item = { kind: 'file', uri: viewUrl };
+    item = isBubbleUri(viewUrl) ? { kind: 'bubble', id: viewUrl } : { kind: 'file', uri: viewUrl };
   }
 
-  const id = item ? (item.kind === 'file' ? item.uri : item.text) : null;
+  const id = item ? (item.kind === 'file' ? item.uri : item.kind === 'text' ? item.text : item.id) : null;
   const pending = item && id !== handled ? item : null;
 
   const consume = useCallback(() => {

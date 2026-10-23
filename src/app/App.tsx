@@ -12,11 +12,13 @@ import type { FormatId } from '../core/formats';
 import type { ConversionResult, LoadedFile } from '../core/types';
 import { errorMessage, t } from '../i18n';
 import { copyToClipboard, fileFromText, pickFile, readClipboard, readFile, saveToFolder, shareResult } from '../platform/files';
+import { useBubble } from '../platform/bubble';
 import { addToHistory, type HistoryEntry, loadHistory } from '../platform/history';
 import { type IncomingItem, useIncomingItem } from '../platform/incoming';
 import { fontFiles } from '../ui/theme/fonts';
 import { usePalette } from '../ui/theme/tokens';
 import { HomeScreen } from '../ui/screens/HomeScreen';
+import { QuickScreen } from '../ui/screens/QuickScreen';
 import { ResultScreen } from '../ui/screens/ResultScreen';
 import { WheelScreen } from '../ui/screens/WheelScreen';
 
@@ -27,6 +29,7 @@ import { WheelScreen } from '../ui/screens/WheelScreen';
  */
 type Screen =
   | { name: 'home' }
+  | { name: 'quick'; floating: true }
   | { name: 'wheel'; file: LoadedFile; format: FormatId | null; floating: boolean }
   | { name: 'result'; result: ConversionResult; sourceName: string; floating: boolean };
 
@@ -43,6 +46,7 @@ export default function App() {
   const [notice, setNotice] = useState<Notice>(null);
   const [external, setExternal] = useState(false);
   const { incoming, consume, checking } = useIncomingItem();
+  const bubbleState = useBubble();
 
   useEffect(() => {
     loadHistory().then(setHistory);
@@ -72,9 +76,14 @@ export default function App() {
     const item: IncomingItem = incoming;
     consume();
     setExternal(true);
+    if (item.kind === 'bubble') {
+      setError(null);
+      setScreen({ name: 'quick', floating: true });
+      return;
+    }
     run(async () => {
       if (item.kind === 'text') openFile(fileFromText(item.text, t('convert.sharedName')), true);
-      else openFile(await readFile(item.uri, { name: item.name, mimeType: item.mimeType }), true);
+      else if (item.kind === 'file') openFile(await readFile(item.uri, { name: item.name, mimeType: item.mimeType }), true);
     });
   }, [incoming, consume, run, openFile]);
 
@@ -131,8 +140,30 @@ export default function App() {
                   openFile(fileFromText(text, t('convert.pastedName')), false);
                 })
               }
+              bubble={bubbleState}
             />
           </SafeAreaView>
+        )}
+
+        {screen.name === 'quick' && (
+          <QuickScreen
+            busy={busy}
+            error={error}
+            onClose={close}
+            onPickFile={() =>
+              run(async () => {
+                const file = await pickFile();
+                if (file) openFile(file, true);
+              })
+            }
+            onPasteText={() =>
+              run(async () => {
+                const text = await readClipboard();
+                if (!text.trim()) return setError(t('home.clipboardEmpty'));
+                openFile(fileFromText(text, t('convert.pastedName')), true);
+              })
+            }
+          />
         )}
 
         {screen.name === 'wheel' && (

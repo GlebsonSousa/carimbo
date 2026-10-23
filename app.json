@@ -3,7 +3,7 @@
     "name": "Carimbo",
     "slug": "carimbo",
     "scheme": "carimbo",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -13,7 +13,7 @@
     },
     "android": {
       "package": "com.carimbo.conversor",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "backgroundColor": "#F6F6F8",
         "foregroundImage": "./assets/android-icon-foreground.png",

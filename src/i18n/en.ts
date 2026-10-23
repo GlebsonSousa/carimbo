@@ -7,6 +7,7 @@ export const en: Record<TranslationKey, string> = {
   'home.pickFile': 'Choose file',
   'home.pasteText': 'Convert copied text',
   'home.supported': 'Supported formats',
+  'home.tip': 'Tip: in any app, long-press a file, tap Share and choose Carimbo. The wheel opens on top of that app.',
   'home.history': 'Recent conversions',
   'home.historyEmpty': 'Your conversions show up here.',
   'home.clipboardEmpty': 'The clipboard is empty. Copy some text and try again.',
@@ -63,6 +64,16 @@ export const en: Record<TranslationKey, string> = {
 
   'result.close': 'Close',
   'result.lines': '{n} lines',
+
+  'bubble.title': 'Floating bubble',
+  'bubble.body': 'A bubble stays at the edge of the screen, on top of any app. Tap it to convert a file without leaving what you are doing.',
+  'bubble.enable': 'Turn on floating bubble',
+  'bubble.disable': 'Turn off bubble',
+  'bubble.on': 'Bubble on. Drag it to move.',
+  'bubble.permission': 'On the next screen, turn on "Allow display over other apps" for Carimbo, then come back.',
+  'quick.pickFile': 'Choose file',
+  'quick.pasteText': 'Convert copied text',
+  'quick.close': 'Close',
 
   'time.now': 'now',
   'time.minutes': '{n} min ago',

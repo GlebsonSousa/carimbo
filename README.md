@@ -51,6 +51,8 @@ src/
 
 **Floating wheel.** `plugins/withFloatingWindow.js` makes the Android window translucent (and blurs the app behind it on Android 12+), so the wheel opened from Share or Open with appears on top of the app the file came from. The wheel geometry lives in `src/ui/components/wheelGeometry.ts` and is unit-tested.
 
+**Floating bubble.** `modules/carimbo-bubble` is a local Expo module in Kotlin: a foreground service draws a draggable bubble over other apps (`SYSTEM_ALERT_WINDOW`). Tapping it opens `carimbo://bubble`, and the app shows two quick actions floating over whatever app was open.
+
 **Errors** carry only a code and details (like a line number). The text shown to the user lives in `src/i18n`.
 
 ## Running

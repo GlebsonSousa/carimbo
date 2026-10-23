@@ -10,6 +10,7 @@ export const ptBR = {
   'home.pickFile': 'Escolher arquivo',
   'home.pasteText': 'Converter texto copiado',
   'home.supported': 'Formatos aceitos',
+  'home.tip': 'Dica: em qualquer app, segure um arquivo, toque em Compartilhar e escolha Carimbo. A roda abre por cima do app.',
   'home.history': 'Últimas conversões',
   'home.historyEmpty': 'As conversões que você fizer aparecem aqui.',
   'home.clipboardEmpty': 'A área de transferência está vazia. Copie um texto e tente de novo.',
@@ -66,6 +67,16 @@ export const ptBR = {
 
   'result.close': 'Fechar',
   'result.lines': '{n} linhas',
+
+  'bubble.title': 'Bolha flutuante',
+  'bubble.body': 'Uma bolha fica na borda da tela, por cima de qualquer app. Toque nela para converter um arquivo sem sair do que está fazendo.',
+  'bubble.enable': 'Ativar bolha flutuante',
+  'bubble.disable': 'Desligar bolha',
+  'bubble.on': 'Bolha ativa. Arraste para mudar de lugar.',
+  'bubble.permission': 'Na próxima tela, ative "Permitir exibição sobre outros apps" para o Carimbo e volte aqui.',
+  'quick.pickFile': 'Escolher arquivo',
+  'quick.pasteText': 'Converter texto copiado',
+  'quick.close': 'Fechar',
 
   'time.now': 'agora',
   'time.minutes': 'há {n} min',
