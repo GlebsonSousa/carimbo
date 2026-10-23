@@ -1,0 +1,197 @@
+{
+  "expo": {
+    "name": "Carimbo",
+    "slug": "carimbo",
+    "scheme": "carimbo",
+    "version": "0.3.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.carimbo.conversor"
+    },
+    "android": {
+      "package": "com.carimbo.conversor",
+      "versionCode": 3,
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F6F8",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "category": [
+            "DEFAULT"
+          ],
+          "data": [
+            {
+              "scheme": "content",
+              "mimeType": "text/plain"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/csv"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/comma-separated-values"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/csv"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/xml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/xml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/json"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/json"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/markdown"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/x-markdown"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/yaml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/x-yaml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/yaml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "text/x-yaml"
+            },
+            {
+              "scheme": "content",
+              "mimeType": "application/octet-stream"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/plain"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/csv"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/comma-separated-values"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/csv"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/xml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/xml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/json"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/json"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/markdown"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/x-markdown"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/yaml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/x-yaml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/yaml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "text/x-yaml"
+            },
+            {
+              "scheme": "file",
+              "mimeType": "application/octet-stream"
+            }
+          ]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-sharing",
+        {
+          "ios": {
+            "enabled": false
+          },
+          "android": {
+            "enabled": true,
+            "singleShareMimeTypes": [
+              "text/plain",
+              "text/csv",
+              "text/comma-separated-values",
+              "application/csv",
+              "text/xml",
+              "application/xml",
+              "application/json",
+              "text/json",
+              "text/markdown",
+              "text/x-markdown",
+              "application/yaml",
+              "application/x-yaml",
+              "text/yaml",
+              "text/x-yaml",
+              "application/octet-stream"
+            ]
+          }
+        }
+      ],
+      "expo-font",
+      "./plugins/withFloatingWindow"
+    ],
+    "owner": "devalmeida-gleb",
+    "extra": {
+      "eas": {
+        "projectId": "417ef96e-d6e6-40b4-ab8e-4a55d283b9f9"
+      }
+    }
+  }
+}
